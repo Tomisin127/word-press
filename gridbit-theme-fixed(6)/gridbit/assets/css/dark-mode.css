@@ -1,0 +1,122 @@
+/* ============================================================
+   GridBit (GetLegacyHomes fork) — Site-wide Dark Mode
+   Hooks into the same html[data-urs-theme] attribute already
+   set server-side (no flash) by the URS plugin's URS_Theme
+   class, and the same --urs-navy / --urs-accent custom
+   properties it registers. This file only ever *adds* rules;
+   it does not remove or override any existing light-mode CSS
+   in style.css, so if this file fails to load the site simply
+   stays in its normal light appearance.
+   ============================================================ */
+
+/* ---- Page background & base text ---- */
+html[data-urs-theme='dark'] body {
+  background: var(--urs-navy, #0a1f44) !important;
+  color: #eef1f8;
+}
+
+/* Header/footer are already dark by design in this theme, so we
+   leave #gridbit-header, #gridbit-footer-blocks, #gridbit-copyright-area
+   untouched — only the light content areas between them need dark rules. */
+
+/* ---- Main content wrapper / single & page content ---- */
+html[data-urs-theme='dark'] #gridbit-wrapper,
+html[data-urs-theme='dark'] #gridbit-content-wrapper,
+html[data-urs-theme='dark'] #primary,
+html[data-urs-theme='dark'] .content-area,
+html[data-urs-theme='dark'] main#main,
+html[data-urs-theme='dark'] article.page,
+html[data-urs-theme='dark'] .hentry,
+html[data-urs-theme='dark'] .entry-content {
+  background: transparent !important;
+  color: #eef1f8;
+}
+
+html[data-urs-theme='dark'] .entry-content a,
+html[data-urs-theme='dark'] .gridbit-grid-post-title a,
+html[data-urs-theme='dark'] .gridbit-grid-post-snippet a {
+  color: var(--urs-accent, #c9960c);
+}
+
+/* ---- Blog / listing grid cards (shared by blog posts AND
+   property listings — this theme has no separate property
+   template, both render through .gridbit-grid-post) ---- */
+html[data-urs-theme='dark'] .gridbit-grid-post {
+  background: #0f2a5c;
+  border: 1px solid #16346e;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+html[data-urs-theme='dark'] .gridbit-grid-post-title,
+html[data-urs-theme='dark'] .gridbit-grid-post-title a {
+  color: #ffffff;
+}
+html[data-urs-theme='dark'] .gridbit-grid-post-snippet,
+html[data-urs-theme='dark'] .gridbit-grid-post-meta,
+html[data-urs-theme='dark'] .gridbit-grid-footer-meta {
+  color: #c7d0e6;
+}
+
+/* ---- Sidebar / widgets (in-content, not footer widgets —
+   footer widgets are already dark by default) ---- */
+html[data-urs-theme='dark'] #secondary .widget,
+html[data-urs-theme='dark'] .widget-area .widget {
+  background: #0f2a5c;
+  border: 1px solid #16346e;
+  color: #eef1f8;
+}
+html[data-urs-theme='dark'] .widget-area .widget a {
+  color: var(--urs-accent, #c9960c);
+}
+html[data-urs-theme='dark'] .gridbit-widget-title {
+  color: #ffffff;
+  border-bottom-color: #16346e;
+}
+
+/* ---- Forms & inputs sitewide (search box, comment form,
+   any front-end form markup rendered by the theme) ---- */
+html[data-urs-theme='dark'] input[type="text"],
+html[data-urs-theme='dark'] input[type="email"],
+html[data-urs-theme='dark'] input[type="search"],
+html[data-urs-theme='dark'] input[type="tel"],
+html[data-urs-theme='dark'] input[type="url"],
+html[data-urs-theme='dark'] input[type="password"],
+html[data-urs-theme='dark'] textarea,
+html[data-urs-theme='dark'] select {
+  background: #16346e;
+  color: #f0f3fa;
+  border: 1px solid #1e4585;
+}
+html[data-urs-theme='dark'] input::placeholder,
+html[data-urs-theme='dark'] textarea::placeholder {
+  color: #93a3c4;
+}
+html[data-urs-theme='dark'] button,
+html[data-urs-theme='dark'] input[type="button"],
+html[data-urs-theme='dark'] input[type="submit"] {
+  background: var(--urs-accent, #c9960c);
+  color: #10182b;
+  border: none;
+}
+
+/* ---- Comments ---- */
+html[data-urs-theme='dark'] .comment-body,
+html[data-urs-theme='dark'] #comments {
+  background: transparent;
+  color: #eef1f8;
+}
+html[data-urs-theme='dark'] .comment-content {
+  background: #0f2a5c;
+  border: 1px solid #16346e;
+}
+
+/* ---- Pagination / breadcrumbs ---- */
+html[data-urs-theme='dark'] .gridbit-pagination a,
+html[data-urs-theme='dark'] .gridbit-pagination span {
+  background: #0f2a5c;
+  color: #eef1f8;
+  border: 1px solid #16346e;
+}
+html[data-urs-theme='dark'] .breadcrumb,
+html[data-urs-theme='dark'] .breadcrumb a {
+  color: #c7d0e6;
+}

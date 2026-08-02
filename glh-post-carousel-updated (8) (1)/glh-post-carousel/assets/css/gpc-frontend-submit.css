@@ -1,0 +1,153 @@
+/* Floating "add a post" button — vertically centered on the right edge,
+   out of the way of normal content but always reachable with a thumb. */
+.gpc-submit-fab {
+	position: fixed;
+	top: 50%;
+	right: 18px;
+	transform: translateY(-50%);
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	background: linear-gradient(135deg, #f0a500, #d98d00);
+	color: #131b30;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	box-shadow: 0 8px 24px rgba(240,165,0,0.45);
+	z-index: 99998;
+	animation: gpc-fab-bob 2.6s ease-in-out infinite;
+}
+@keyframes gpc-fab-bob {
+	0%, 100% { transform: translateY(-50%) scale(1); }
+	50% { transform: translateY(-52%) scale(1.05); }
+}
+
+.gpc-submit-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(10, 14, 26, 0.7);
+	display: none;
+	align-items: center;
+	justify-content: center;
+	z-index: 99999;
+	padding: 16px;
+}
+.gpc-submit-overlay.is-open { display: flex; }
+
+.gpc-submit-modal {
+	position: relative;
+	background: #fff;
+	border-radius: 20px;
+	padding: 28px 24px;
+	width: 100%;
+	max-width: 480px;
+	max-height: 90vh;
+	overflow-y: auto;
+	box-sizing: border-box;
+}
+.gpc-submit-modal h2 { margin: 0 0 6px; font-size: 22px; }
+.gpc-submit-note { color: #666; font-size: 13px; margin: 0 0 18px; }
+
+.gpc-submit-close {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	border: none;
+	background: #f1f1f1;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+.gpc-submit-label {
+	display: block;
+	font-weight: 700;
+	font-size: 13px;
+	margin: 14px 0 6px;
+}
+.gpc-submit-optional { font-weight: 400; color: #888; font-size: 12px; }
+
+.gpc-submit-input {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 12px 14px;
+	border: 2px solid #e2e2e2;
+	border-radius: 10px;
+	font-size: 15px;
+	font-family: inherit;
+}
+.gpc-submit-input:focus { border-color: #f0a500; outline: none; }
+.gpc-submit-textarea { min-height: 120px; resize: vertical; }
+
+.gpc-submit-drop-zone {
+	border: 2px dashed #d0d0d0;
+	border-radius: 12px;
+	padding: 18px;
+	text-align: center;
+	background: #fafafa;
+}
+.gpc-submit-btn-secondary {
+	background: #fff;
+	border: 2px solid #131b30;
+	color: #131b30;
+	font-weight: 700;
+	padding: 10px 20px;
+	border-radius: 999px;
+	cursor: pointer;
+}
+
+.gpc-submit-pool-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+	gap: 8px;
+	margin: 12px 0;
+}
+.gpc-submit-pool-thumb {
+	position: relative;
+	aspect-ratio: 1;
+	border-radius: 8px;
+	overflow: hidden;
+	border: 1px solid #e2e2e2;
+}
+.gpc-submit-pool-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gpc-submit-pool-remove {
+	position: absolute;
+	top: 3px;
+	right: 3px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: rgba(224,80,80,0.9);
+	color: #fff;
+	border: none;
+	font-size: 11px;
+	cursor: pointer;
+}
+
+.gpc-submit-btn-primary {
+	display: block;
+	width: 100%;
+	margin-top: 20px;
+	background: linear-gradient(90deg, #f0a500, #d98d00);
+	color: #131b30;
+	border: none;
+	border-radius: 999px;
+	padding: 14px;
+	font-weight: 700;
+	font-size: 15px;
+	cursor: pointer;
+}
+.gpc-submit-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.gpc-submit-msg { margin-top: 12px; font-size: 13px; text-align: center; }
+.gpc-submit-msg.is-success { color: #15803d; font-weight: 600; }
+.gpc-submit-msg.is-error { color: #dc2626; font-weight: 600; }
+
+@media (max-width: 480px) {
+	.gpc-submit-fab { right: 14px; width: 50px; height: 50px; }
+	.gpc-submit-modal { padding: 22px 18px; border-radius: 16px; }
+}

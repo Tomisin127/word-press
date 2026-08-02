@@ -1,0 +1,17 @@
+= Version 1.0.0 =
+* Initial release.
+
+= Version 1.0.1 =
+* Screenshot updated.
+
+= Version 1.0.2 =
+* Fixed coding issues
+* Many improvements
+
+= Version 1.0.3 =
+* Fixed coding issues
+* Theme Customizer updated
+* Many improvements
+
+= Version 1.0.4 =
+* Cleanup: Removed obsolete IE polyfills (assets/js/html5shiv*.js, assets/js/respond*.js).

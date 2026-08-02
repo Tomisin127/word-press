@@ -1,0 +1,46 @@
+/* ============================================================
+   GridBit (GetLegacyHomes fork) — Readability pass
+   Bumps up the small default text size inside widget areas
+   (where shortcodes like login/signup forms usually live) and
+   general widget links/paragraphs. Loads after every other
+   stylesheet so it takes effect without needing !important
+   everywhere, and only touches font-size/line-height — never
+   layout, spacing, or color — so it can't break anything else.
+   ============================================================ */
+
+.gridbit-widget-box,
+.gridbit-widget-box p,
+.gridbit-widget-box li,
+.gridbit-widget-box label,
+.gridbit-widget-box input,
+.gridbit-widget-box select,
+.gridbit-widget-box textarea,
+.gridbit-widget-box .textwidget,
+.widget,
+.widget p,
+.widget li,
+.widget a {
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+}
+
+.gridbit-widget-box a,
+.widget a {
+  color: #1a3a6b;
+}
+
+.gridbit-widget-title,
+.gridbit-widget-title-inside {
+  font-size: 19px !important;
+}
+
+/* Small helper/hint text (e.g. "Not you? Log out & switch account")
+   is intentionally smaller than body text by design, but 11–12px is
+   too small to read comfortably — raise the floor without making
+   every hint the same size as normal text. */
+.gridbit-widget-box small,
+.widget small,
+.gridbit-widget-box [style*="font-size:1"],
+.gridbit-widget-box [style*="font-size: 1"] {
+  font-size: 13px !important;
+}

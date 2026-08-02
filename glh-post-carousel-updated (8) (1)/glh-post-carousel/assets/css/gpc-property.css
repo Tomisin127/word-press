@@ -1,0 +1,45 @@
+.gpc-prop-block{margin:0 0 16px;}
+.gpc-prop-location{display:flex;align-items:center;gap:6px;color:#6b6b6b;font-size:14.5px;margin:0 0 8px;}
+.gpc-prop-location svg{flex:none;width:17px;height:17px;stroke:#8a8a8a;}
+.gpc-prop-stats{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:0 0 8px;}
+.gpc-prop-stat{display:flex;align-items:center;gap:6px;white-space:nowrap;color:#4a4a4a;font-size:15px;}
+.gpc-prop-stat svg{flex:none;width:19px;height:19px;stroke:#4a4a4a;}
+.gpc-prop-price{font-weight:700;font-size:16px;color:#1a1a1a;}
+
+/* Red "AD" ribbon for posts an admin tagged as an ad from the submit form */
+.gpc-ad-ribbon{position:absolute;top:10px;left:-6px;background:#e53935;color:#fff;font-weight:700;font-size:11px;letter-spacing:.04em;padding:4px 12px 4px 14px;border-radius:0 4px 4px 0;box-shadow:0 2px 6px rgba(0,0,0,.25);z-index:6;}
+.gpc-ad-ribbon::before{content:"";position:absolute;left:0;bottom:-6px;border-width:0 0 6px 6px;border-style:solid;border-color:transparent transparent transparent #a02420;}
+.gpc-sold-ribbon{background:#37474f;}
+.gpc-sold-ribbon::before{border-color:transparent transparent transparent #1c2529;}
+
+/* Google-listing-style star rating */
+.gpc-rating{display:flex;align-items:center;gap:6px;margin:0 0 8px;font-size:14.5px;color:#3c3c3c;}
+.gpc-rating-stars{display:inline-flex;gap:1px;}
+.gpc-rating-stars svg{width:15px;height:15px;}
+.gpc-rating-stars svg.is-filled{fill:#f4b400;stroke:#f4b400;}
+.gpc-rating-stars svg.is-empty{fill:none;stroke:#c8c8c8;}
+.gpc-rating-score{font-weight:700;color:#1a1a1a;}
+.gpc-rating-count{color:#777;}
+.gpc-rating.gpc-rating-interactive .gpc-rating-stars svg{cursor:pointer;transition:transform .1s ease;}
+.gpc-rating.gpc-rating-interactive .gpc-rating-stars svg:hover{transform:scale(1.15);}
+.gpc-rating.gpc-rating-done .gpc-rating-stars svg{cursor:default;}
+.gpc-rating.gpc-rating-done .gpc-rating-stars svg:hover{transform:none;}
+.gpc-rating.is-submitting{opacity:.6;pointer-events:none;}
+.gpc-rating-count{white-space:nowrap;}
+.gpc-rating-mine{font-size:12.5px;color:#8a8a8a;font-style:italic;margin-left:4px;}
+
+/* Description shown FAQ-style: collapsed by default, tap to expand */
+.gpc-desc-faq{margin:4px 0 24px;border:1px solid #e6e6e6;border-radius:12px;overflow:hidden;background:#fff;}
+.gpc-desc-faq-trigger{
+	width:100%;display:flex;align-items:center;gap:10px;
+	padding:14px 16px;background:#fafafa;border:none;cursor:pointer;
+	font-size:15.5px;font-weight:700;color:#1a1a1a;text-align:left;
+}
+.gpc-desc-faq-icon{font-size:16px;flex:none;}
+.gpc-desc-faq-label{flex:1;}
+.gpc-desc-faq-chevron{flex:none;transition:transform .2s ease;color:#999;font-size:18px;}
+.gpc-desc-faq.is-open .gpc-desc-faq-chevron{transform:rotate(180deg);}
+.gpc-desc-faq-panel{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.gpc-desc-faq-inner{padding:16px;font-size:14.5px;line-height:1.65;color:#3c3c3c;}
+.gpc-desc-faq-inner p:first-child{margin-top:0;}
+.gpc-desc-faq-inner p:last-child{margin-bottom:0;}

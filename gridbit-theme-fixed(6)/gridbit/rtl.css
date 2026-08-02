@@ -1,0 +1,258 @@
+/*
+ * Theme Name: GridBit RTL CSS
+ * Description: Adds support for languages written in a Right To Left (RTL) direction.
+ */
+
+body{direction:rtl;unicode-bidi:embed;}
+
+/* Typography & Elements
+-------------------------------------------------------------- */
+blockquote{text-align:right;}
+blockquote cite{text-align:right;}
+ul,ol{margin:0 2em 1.5em 0;}
+li > ul,li > ol{margin-left:0;margin-right:1em;}
+dd{margin:0 1.5em 1.5em;}
+th,td,caption{padding:4px 5px 4px 10px;}
+
+/* Forms
+-------------------------------------------------------------- */
+textarea{padding-right:3px;}
+
+/* Layout
+-------------------------------------------------------------- */
+.gridbit-content-wrapper{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-webkit-flex-direction:row-reverse;-moz-box-orient:horizontal;-moz-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;}
+
+/* Header
+-------------------------------------------------------------- */
+.gridbit-header-inside-container{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-webkit-flex-direction:row-reverse;-moz-box-orient:horizontal;-moz-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;}
+.gridbit-logo{float:right;text-align:right;}
+.gridbit-header-menu{float:right;}
+.gridbit-header-social{float:right;text-align:left;}
+.gridbit-header-banner-active .gridbit-logo{float:right;text-align:right;}
+.gridbit-header-banner-active .gridbit-header-banner{float:right;text-align:left;}
+.gridbit-header-banner-active .gridbit-header-menu{float:none;}
+.gridbit-header-banner-active .gridbit-header-social{float:none;text-align:right;}
+.gridbit-header-full-active .gridbit-logo{float:none;text-align:right;}
+.gridbit-header-full-active .gridbit-header-menu{float:none;}
+.gridbit-header-full-active .gridbit-header-social{float:none;text-align:right;}
+
+@media only screen and (max-width: 1112px) {
+.gridbit-logo{float:none;text-align:right;}
+.gridbit-header-menu{float:none;}
+.gridbit-header-social{float:none;text-align:right;}
+.gridbit-header-banner-active .gridbit-logo{float:none;text-align:right;}
+.gridbit-header-banner-active .gridbit-header-banner{float:none;text-align:right;}
+.gridbit-header-banner-active .gridbit-header-menu{float:none;}
+.gridbit-header-banner-active .gridbit-header-social{float:none;text-align:right;}
+}
+
+.gridbit-header-image-info{text-align:right;}
+
+.gridbit-logo-beside-title .site-branding-full .gridbit-custom-logo-image{margin-right:0;margin-left:15px;}
+@media only screen and (max-width: 1112px) {
+.gridbit-logo-beside-title .site-branding-full{justify-content:right;}
+.gridbit-custom-logo-active.gridbit-logo-beside-title .gridbit-logo{text-align:right;}
+}
+
+/* Primary Menu
+-------------------------------------------------------------- */
+.gridbit-primary-nav-menu li{text-align:right;float:right;}
+.gridbit-primary-nav-menu .sub-menu,.gridbit-primary-nav-menu .children{left:0;right:-9999px;}
+.gridbit-primary-nav-menu .sub-menu .sub-menu,.gridbit-primary-nav-menu .children .children{margin:-44px 189px 0 0}
+.gridbit-primary-nav-menu li:hover > .sub-menu,.gridbit-primary-nav-menu li:hover > .children,.gridbit-primary-nav-menu li.gridbit-focus > .sub-menu,.gridbit-primary-nav-menu li.gridbit-focus > .children{right:auto;}
+.gridbit-primary-responsive-menu-icon{margin:0;text-align:right;}
+.gridbit-primary-responsive-menu-icon::before{margin:0 0 0 6px;}
+.gridbit-primary-nav-menu{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-webkit-flex-direction:row-reverse;-moz-box-orient:horizontal;-moz-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;}
+@media only screen and (min-width: 1113px) {
+.gridbit-header-full-active .gridbit-primary-nav-menu{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-webkit-flex-direction:row-reverse;-moz-box-orient:horizontal;-moz-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;-webkit-box-pack:end;-webkit-justify-content:flex-end;-moz-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;}
+.gridbit-primary-nav-menu > li.menu-item-has-children > a:after{margin-left:0;margin-right:8px;}
+.gridbit-primary-nav-menu .sub-menu li.menu-item-has-children > a:after,.gridbit-primary-nav-menu .children li.menu-item-has-children > a:after{margin-left:0;margin-right:8px;right:auto;left:8px;}
+}
+@media only screen and (max-width: 1112px) {
+.gridbit-primary-mobile-menu-inactive.gridbit-header-full-active .gridbit-primary-nav-menu{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-webkit-flex-direction:row-reverse;-moz-box-orient:horizontal;-moz-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;-webkit-box-pack:end;-webkit-justify-content:flex-end;-moz-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;}
+.gridbit-primary-mobile-menu-inactive .gridbit-primary-nav-menu > li.menu-item-has-children > a:after{margin-left:0;margin-right:8px;}
+.gridbit-primary-mobile-menu-inactive .gridbit-primary-nav-menu .sub-menu li.menu-item-has-children > a:after,.gridbit-primary-mobile-menu-inactive .gridbit-primary-nav-menu .children li.menu-item-has-children > a:after{margin-left:0;margin-right:8px;right:auto;left:8px;}
+}
+@media only screen and (max-width: 1112px) {
+.gridbit-primary-mobile-menu-active .gridbit-nav-primary{float:none;}
+.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu li{float:none;}
+.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu .menu-item-has-children > a,.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu .page_item_has_children > a{margin-right:0;margin-left:50px;}
+.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu > .menu-item-has-children:before,.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu > .page_item_has_children:before{float:left;right:auto;left:0;text-align:left;}
+.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu > li > .sub-menu,.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu > li > .children{margin:0;padding:0;left:0;right:-9999px;}
+.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu > li.gridbit-focus > .sub-menu,.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu > li.gridbit-focus > .children{right:auto;}
+.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu > li > .sub-menu.gridbit-submenu-toggle,.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu > li > .children.gridbit-submenu-toggle{right:auto;}
+.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu .sub-menu,.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu .children{right:auto;margin:0;}
+.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu .sub-menu .sub-menu,.gridbit-primary-mobile-menu-active .gridbit-primary-nav-menu.gridbit-primary-responsive-menu .children .children{margin:0;padding-left:0;padding-right:15px;}
+}
+
+/* Secondary Menu
+-------------------------------------------------------------- */
+.gridbit-secondary-nav-menu li{text-align:right;float:right;}
+.gridbit-secondary-nav-menu .sub-menu,.gridbit-secondary-nav-menu .children{left:0;right:-9999px;}
+.gridbit-secondary-nav-menu .sub-menu .sub-menu,.gridbit-secondary-nav-menu .children .children{margin:-39px 189px 0 0}
+.gridbit-secondary-nav-menu li:hover > .sub-menu,.gridbit-secondary-nav-menu li:hover > .children,.gridbit-secondary-nav-menu li.gridbit-focus > .sub-menu,.gridbit-secondary-nav-menu li.gridbit-focus > .children{right:auto;}
+.gridbit-secondary-responsive-menu-icon{text-align:right;margin:0;}
+.gridbit-secondary-responsive-menu-icon::before{margin:0 0 0 6px;}
+.gridbit-secondary-nav-menu > li:first-child > a{border-left:none !important;}
+@media only screen and (min-width: 1113px) {
+.gridbit-secondary-nav-menu > li.menu-item-has-children > a:after{margin-left:0;margin-right:8px;}
+.gridbit-secondary-nav-menu .sub-menu li.menu-item-has-children > a:after,.gridbit-secondary-nav-menu .children li.menu-item-has-children > a:after{margin-left:0;margin-right:8px;right:auto;left:8px;}
+}
+@media only screen and (max-width: 1112px) {
+.gridbit-secondary-mobile-menu-inactive .gridbit-secondary-nav-menu > li.menu-item-has-children > a:after{margin-left:0;margin-right:8px;}
+.gridbit-secondary-mobile-menu-inactive .gridbit-secondary-nav-menu .sub-menu li.menu-item-has-children > a:after,.gridbit-secondary-mobile-menu-inactive .gridbit-secondary-nav-menu .children li.menu-item-has-children > a:after{margin-left:0;margin-right:8px;right:auto;left:8px;}
+}
+@media only screen and (max-width: 1112px) {
+.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu li{float:none}
+.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu .menu-item-has-children > a,.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu .page_item_has_children > a{margin-right:0;margin-left:50px;}
+.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu > .menu-item-has-children:before,.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu > .page_item_has_children:before{float:left;right:auto;left:0;text-align:left;}
+.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu > li > .sub-menu,.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu > li > .children{margin:0;padding:0;left:0;right:-9999px;}
+.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu > li.gridbit-focus > .sub-menu,.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu > li.gridbit-focus > .children{right:auto;}
+.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu > li > .sub-menu.gridbit-submenu-toggle,.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu > li > .children.gridbit-submenu-toggle{right:auto;}
+.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu .sub-menu,.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu .children{right:auto;margin:0;}
+.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu .sub-menu .sub-menu,.gridbit-secondary-mobile-menu-active .gridbit-secondary-nav-menu.gridbit-secondary-responsive-menu .children .children{margin:0;padding-left:0;padding-right:15px;}
+}
+
+/* Posts & Pages
+-------------------------------------------------------------- */
+.gridbit-posts-wrapper .gridbit-posts-heading{text-align:right;}
+.gridbit-posts-wrapper .gridbit-posts-heading .gridbit-posts-heading-inside{padding:0;}
+.gridbit-posts-wrapper .gridbit-posts-heading i{right:auto;left:5px;}
+
+.gridbit-page-header{text-align:right;}
+.gridbit-page-header-inside{padding:0;}
+.taxonomy-description{text-align:right;}
+
+.gridbit-entry-meta-single{text-align:right;}
+.gridbit-entry-meta-single-cats{margin:0 0 0 10px;}
+.gridbit-entry-meta-single-author{margin:0 0 0 10px;}
+.gridbit-entry-meta-single-date{margin:0 0 0 10px;}
+.gridbit-entry-meta-single-comments{margin:0 0 0 10px;}
+
+.entry-header{text-align:right;}
+.entry-title{text-align:right;}
+
+.entry-content table tr th{border-right:none;border-left:1px solid #444;}
+.entry-content table tr th:last-child{border-left:none;}
+.entry-content table tr td{border-right:none;border-left:1px solid #eee;}
+.entry-content table tr td:last-child{border-left:none;}
+
+.gridbit-entry-footer{text-align:right;}
+.gridbit-entry-footer .gridbit-tags-links{text-align:right;}
+
+
+/* =Page Links
+----------------------------------------------- */
+.page-links > span,.page-links > a{float:right;border-right:1px solid #dadada !important;}
+.page-links span.page-links-title{border-right:0 !important;}
+
+/* Posts/Post Navigation
+-------------------------------------------------------------- */
+.navigation.posts-navigation .nav-links .nav-previous a:after{margin-left:0;margin-right:6px;}
+.navigation.posts-navigation .nav-links .nav-next a:before{margin-right:0;margin-left:6px;}
+.nav-previous{float:left;text-align:left;}
+.nav-next{float:right;text-align:right;}
+.navigation.post-navigation .nav-previous{float:left;text-align:left;}
+.navigation.post-navigation .nav-next{float:right;text-align:right;}
+@media only screen and (max-width: 599px) {
+.navigation.post-navigation .nav-previous{float:none;text-align:center;}
+.navigation.post-navigation .nav-next{float:none;text-align:center;}
+}
+.navigation.pagination{text-align:right;}
+
+/* WP-PageNavi
+-------------------------------------------------------------- */
+.wp-pagenavi{text-align:right;}
+
+/* Tag Cloud Widget
+-------------------------------------------------------------- */
+.widget_tag_cloud a{margin:0 0 5px 5px;}
+
+/* Calendar
+-------------------------------------------------------------- */
+#wp-calendar caption{text-align:left;padding:10px 0 0 10px;}
+#wp-calendar tbody td{text-align:right;}
+#wp-calendar tfoot #next{text-align:left;}
+#wp-calendar thead th{padding-bottom:10px;text-align:right;}
+
+/* Alignments
+-------------------------------------------------------------- */
+.alignleft{float:right;margin:0 0 10px 10px;}
+.alignright{float:left;margin:0 10px 10px 0;}
+
+/* Captions
+-------------------------------------------------------------- */
+.wp-caption{text-align:right;}
+
+/* Comments
+-------------------------------------------------------------- */
+.comment-respond #cancel-comment-reply-link{margin-left:0;margin-right:1em;}
+.comment-form label{padding-right:0;padding-left:1em;}
+.comments-area > ol{margin:0;}
+.comment .edit-link,.pingback .edit-link{float:left;}
+.comment .comment-meta .comment-author .avatar{float:right;margin-right:0;margin-left:1em;}
+#respond input[type=text],textarea{padding:3px 3px 3px 0;margin:5px 0 3px 1px;}
+#respond input[type=text]:focus,#respond input[type=text]:active,textarea:focus,textarea:active{margin:5px 0 3px 1px;}
+.comment-form-cookies-consent label{padding-left:0;padding-right:10px;}
+
+/* Footer
+-------------------------------------------------------------- */
+#gridbit-footer-blocks .widget ol{padding:0 1.2em 0 0;}
+#gridbit-footer-blocks .widget li{padding:6px 0 6px 0;}
+#gridbit-footer-blocks .widget li li{padding:8px 10px 8px 0;}
+
+.gridbit-footer-block-cols{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-webkit-flex-direction:row-reverse;-moz-box-orient:horizontal;-moz-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;}
+
+/* Copyright
+-------------------------------------------------------------- */
+#gridbit-copyright-area{text-align:right;}
+
+/* Search Widget
+-------------------------------------------------------------- */
+.gridbit-search-overlay{left:auto;right:0;}
+.gridbit-search-overlay .gridbit-search-closebtn{right:auto;left:45px;}
+.gridbit-search-overlay .gridbit-header-search-close{right:auto;left:45px;}
+.gridbit-search-overlay input[type=text]{float:right;}
+input.gridbit-search-submit{right:auto;left:0;}
+
+/* Header Social Icons ----------------------------------------------- */
+.gridbit-header-social-icons{right:auto;left:0;}
+.gridbit-layout-type-boxed .gridbit-header-social-icons{right:auto;left:5px;}
+.gridbit-header-social-icons a{margin-right:0;margin-left:0;}
+
+/* Featured Posts Area Widgets
+-------------------------------------------------------------- */
+.gridbit-featured-posts-area .widget .gridbit-widget-title{text-align:right;}
+.gridbit-featured-posts-area .widget .gridbit-widget-title i{right:auto;left:5px;}
+.gridbit-featured-posts-area .widget ol{padding:0 1.2em 0 0;}
+.gridbit-featured-posts-area .widget li{padding:6px 0px 6px 0px;}
+.gridbit-featured-posts-area .widget li li{padding:6px 10px 6px 0;}
+
+/* Featured Posts: Style 1
+-------------------------------------------------------------- */
+.gridbit-list-post .gridbit-list-post-thumbnail{float:right;margin:0 0 1px 8px;}
+.gridbit-list-post-header{text-align:right;}
+.gridbit-list-post-header-meta{margin-right:0;margin-left:6px;}
+.gridbit-list-post-header-meta:last-child{margin-left:0;float:left;}
+
+/* Grid
+-------------------------------------------------------------- */
+.gridbit-grid-post-snippet{text-align:right;}
+.gridbit-grid-thumbnail-meta{text-align:right;}
+.gridbit-grid-thumbnail-meta i{margin-right:0;margin-left:3px;}
+.gridbit-grid-post-details-meta{text-align:right;}
+.gridbit-grid-post-details-meta i{margin-right:0;margin-left:3px;}
+.gridbit-grid-post-author-image{margin:0 0 0 8px;float:right;}
+.gridbit-masonry-inactive.gridbit-flexbox-grid .gridbit-posts-grid{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-webkit-flex-direction:row-reverse;-moz-box-orient:horizontal;-moz-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;}
+.gridbit-masonry-inactive.gridbit-flexbox-grid .gridbit-grid-posts{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-webkit-flex-direction:row-reverse;-moz-box-orient:horizontal;-moz-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;}
+
+/* Author Bio Box
+-------------------------------------------------------------- */
+.gridbit-author-bio-gravatar{float:right;margin:0 0 5px 12px;}
+.gridbit-author-bio .gridbit-author-bio-social{text-align:right;}
+.gridbit-author-bio .gridbit-author-bio-social a{margin:0 0 3px 4px;}
+.gridbit-author-bio .gridbit-author-bio-social a i{margin-right:0;margin-left:1px;}
+
+/* Scroll to Top Button
+-------------------------------------------------------------- */
+.gridbit-scroll-top{right:auto;left:20px;}
