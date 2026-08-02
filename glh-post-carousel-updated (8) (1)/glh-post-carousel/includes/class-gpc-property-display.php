@@ -45,14 +45,15 @@ class GPC_Property_Display {
 		}
 		ob_start();
 		?>
-		<div class="gpc-desc-faq">
-			<button type="button" class="gpc-desc-faq-trigger" aria-expanded="false">
-				<span class="gpc-desc-faq-icon">📄</span>
-				<span class="gpc-desc-faq-label">Description</span>
-				<span class="gpc-desc-faq-chevron">⌄</span>
-			</button>
-			<div class="gpc-desc-faq-panel">
-				<div class="gpc-desc-faq-inner"><?php echo $content; ?></div>
+		<div class="gpc-faq-sections">
+			<div class="gpc-faq-item">
+				<button type="button" class="gpc-faq-trigger" aria-expanded="false">
+					<span class="gpc-faq-label">Description</span>
+					<svg class="gpc-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+				</button>
+				<div class="gpc-faq-panel">
+					<div class="gpc-faq-content"><?php echo $content; ?></div>
+				</div>
 			</div>
 		</div>
 		<?php
@@ -98,69 +99,91 @@ class GPC_Property_Display {
 		$count = (int) get_post_meta( $post_id, '_gpc_rating_count', true );
 		$avg   = $count > 0 ? $sum / $count : 0;
 
+		// Map status to badge text
+		$status_map = array(
+			'available' => 'FOR SALE',
+			'sold'      => 'SOLD',
+			'rented'    => 'LEASED',
+		);
+		$status_text = isset( $status_map[ $status ] ) ? $status_map[ $status ] : ( $status ? strtoupper( $status ) : '' );
+
 		ob_start();
 		?>
-		<div class="gpc-prop-block" style="position:relative;">
-			<?php if ( 'sold' === $status ) : ?>
-				<span class="gpc-ad-ribbon gpc-sold-ribbon">SOLD</span>
+		<div class="gpc-prop-info-block">
+			<!-- Status Badge -->
+			<?php if ( $status_text ) : ?>
+				<span class="gpc-status-badge gpc-status-<?php echo esc_attr( $status ); ?>">
+					<?php echo esc_html( $status_text ); ?>
+				</span>
 			<?php elseif ( $is_ad ) : ?>
-				<span class="gpc-ad-ribbon">AD</span>
+				<span class="gpc-status-badge gpc-status-ad">AD</span>
 			<?php endif; ?>
 
-			<?php
-			$my_previous = isset( $_COOKIE[ 'gpc_rated_' . $post_id ] ) ? absint( $_COOKIE[ 'gpc_rated_' . $post_id ] ) : 0;
-			$show_rating = ! is_singular( 'post' ); // listing page only, per explicit request
-			if ( $show_rating ) :
-			?>
-				<div class="gpc-rating gpc-rating-interactive" data-post-id="<?php echo esc_attr( $post_id ); ?>" data-my-rating="<?php echo esc_attr( $my_previous ); ?>">
-					<span class="gpc-rating-stars">
-						<?php for ( $i = 1; $i <= 5; $i++ ) :
-							$filled = $i <= round( $avg );
-						?>
-							<svg viewBox="0 0 24 24" stroke-width="1.5" class="<?php echo $filled ? 'is-filled' : 'is-empty'; ?>" data-stars="<?php echo esc_attr( $i ); ?>"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-						<?php endfor; ?>
-					</span>
-					<span class="gpc-rating-score"><?php echo $count > 0 ? esc_html( number_format( $avg, 1 ) ) : ''; ?></span>
-					<span class="gpc-rating-count"><?php echo $count > 0 ? '(' . esc_html( number_format( $count ) ) . ')' : 'Rate this listing'; ?></span>
-					<span class="gpc-rating-mine"><?php echo $my_previous ? 'Your rating: ' . esc_html( $my_previous ) . '★ (tap to change)' : ''; ?></span>
-				</div>
-			<?php endif; ?>
-
-			<?php if ( $location !== '' ) : ?>
-				<div class="gpc-prop-location">
-					<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-					<span><?php echo esc_html( $location ); ?></span>
-				</div>
-			<?php endif; ?>
-
-			<?php if ( $bedrooms !== '' || $bathrooms !== '' || $toilets !== '' ) : ?>
-				<div class="gpc-prop-stats">
-					<?php if ( $bedrooms !== '' ) : ?>
-						<span class="gpc-prop-stat" title="Bedrooms">
-							<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"></path><path d="M3 18h18"></path><path d="M5 10V7a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v3"></path><path d="M13 10V8a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path></svg>
-							<?php echo esc_html( $bedrooms ); ?>
-						</span>
-					<?php endif; ?>
-
-					<?php if ( $bathrooms !== '' ) : ?>
-						<span class="gpc-prop-stat" title="Bathrooms">
-							<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3z"></path><path d="M6 12V6a2 2 0 0 1 3.2-1.6"></path><line x1="9" y1="19" x2="9" y2="21"></line><line x1="15" y1="19" x2="15" y2="21"></line></svg>
-							<?php echo esc_html( $bathrooms ); ?>
-						</span>
-					<?php endif; ?>
-
-					<?php if ( $toilets !== '' ) : ?>
-						<span class="gpc-prop-stat" title="Toilets">
-							<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h6l1 5H6l1-5z"></path><path d="M6 9h8l-.6 4.5A3 3 0 0 1 10.4 16H9.6a3 3 0 0 1-3-2.5L6 9z"></path><path d="M9 16v2a1 1 0 0 0 2 0v-2"></path></svg>
-							<?php echo esc_html( $toilets ); ?>
-						</span>
+			<!-- Property Info Container -->
+			<div class="gpc-prop-info-container">
+				<!-- Title & Location -->
+				<div class="gpc-prop-header">
+					<h2 class="gpc-prop-title"><?php echo esc_html( get_the_title( $post_id ) ); ?></h2>
+					<?php if ( $location !== '' ) : ?>
+						<div class="gpc-prop-location-main">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+							<span><?php echo esc_html( $location ); ?></span>
+						</div>
 					<?php endif; ?>
 				</div>
-			<?php endif; ?>
 
-			<?php if ( $price !== '' ) : ?>
-				<div class="gpc-prop-price"><?php echo esc_html( $price ); ?></div>
-			<?php endif; ?>
+				<!-- Price & Stats Row -->
+				<div class="gpc-prop-top-row">
+					<?php if ( $price !== '' ) : ?>
+						<div class="gpc-prop-price-main"><?php echo esc_html( $price ); ?></div>
+					<?php endif; ?>
+
+					<?php if ( $bedrooms !== '' || $bathrooms !== '' || $toilets !== '' ) : ?>
+						<div class="gpc-prop-stats-row">
+							<?php if ( $bedrooms !== '' ) : ?>
+								<span class="gpc-prop-stat-item" title="Bedrooms">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"></path><path d="M3 18h18"></path><path d="M5 10V7a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v3"></path><path d="M13 10V8a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path></svg>
+									<span><?php echo esc_html( $bedrooms ); ?></span>
+								</span>
+							<?php endif; ?>
+
+							<?php if ( $bathrooms !== '' ) : ?>
+								<span class="gpc-prop-stat-item" title="Bathrooms">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3z"></path><path d="M6 12V6a2 2 0 0 1 3.2-1.6"></path><line x1="9" y1="19" x2="9" y2="21"></line><line x1="15" y1="19" x2="15" y2="21"></line></svg>
+									<span><?php echo esc_html( $bathrooms ); ?></span>
+								</span>
+							<?php endif; ?>
+
+							<?php if ( $toilets !== '' ) : ?>
+								<span class="gpc-prop-stat-item" title="Toilets">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 4h6l1 5H6l1-5z"></path><path d="M6 9h8l-.6 4.5A3 3 0 0 1 10.4 16H9.6a3 3 0 0 1-3-2.5L6 9z"></path><path d="M9 16v2a1 1 0 0 0 2 0v-2"></path></svg>
+									<span><?php echo esc_html( $toilets ); ?></span>
+								</span>
+							<?php endif; ?>
+						</div>
+					<?php endif; ?>
+				</div>
+
+				<!-- Rating (Listing page only) -->
+				<?php
+				$my_previous = isset( $_COOKIE[ 'gpc_rated_' . $post_id ] ) ? absint( $_COOKIE[ 'gpc_rated_' . $post_id ] ) : 0;
+				$show_rating = ! is_singular( 'post' );
+				if ( $show_rating ) :
+				?>
+					<div class="gpc-rating-row gpc-rating-interactive" data-post-id="<?php echo esc_attr( $post_id ); ?>" data-my-rating="<?php echo esc_attr( $my_previous ); ?>">
+						<span class="gpc-rating-stars">
+							<?php for ( $i = 1; $i <= 5; $i++ ) :
+								$filled = $i <= round( $avg );
+							?>
+								<svg viewBox="0 0 24 24" stroke-width="1.5" class="<?php echo $filled ? 'is-filled' : 'is-empty'; ?>" data-stars="<?php echo esc_attr( $i ); ?>"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+							<?php endfor; ?>
+						</span>
+						<span class="gpc-rating-score"><?php echo $count > 0 ? esc_html( number_format( $avg, 1 ) ) : ''; ?></span>
+						<span class="gpc-rating-count"><?php echo $count > 0 ? '(' . esc_html( number_format( $count ) ) . ')' : 'Rate this listing'; ?></span>
+						<span class="gpc-rating-mine"><?php echo $my_previous ? 'Your rating: ' . esc_html( $my_previous ) . '★ (tap to change)' : ''; ?></span>
+					</div>
+				<?php endif; ?>
+			</div>
 		</div>
 		<?php
 		return ob_get_clean();
