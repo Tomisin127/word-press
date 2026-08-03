@@ -1,45 +1,96 @@
-.gpc-prop-block{margin:0 0 16px;}
-.gpc-prop-location{display:flex;align-items:center;gap:6px;color:#6b6b6b;font-size:14.5px;margin:0 0 8px;}
-.gpc-prop-location svg{flex:none;width:17px;height:17px;stroke:#8a8a8a;}
-.gpc-prop-stats{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:0 0 8px;}
-.gpc-prop-stat{display:flex;align-items:center;gap:6px;white-space:nowrap;color:#4a4a4a;font-size:15px;}
-.gpc-prop-stat svg{flex:none;width:19px;height:19px;stroke:#4a4a4a;}
-.gpc-prop-price{font-weight:700;font-size:16px;color:#1a1a1a;}
+/* ==========================================================================
+   Property info block — modern premium real-estate layout
+   ========================================================================== */
+.gpc-prop-info-block{position:relative;margin:0 0 24px;}
+.gpc-prop-info-container{
+	background:#fff;border:1px solid #ececec;border-radius:14px;
+	padding:20px 22px;box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
 
-/* Red "AD" ribbon for posts an admin tagged as an ad from the submit form */
-.gpc-ad-ribbon{position:absolute;top:10px;left:-6px;background:#e53935;color:#fff;font-weight:700;font-size:11px;letter-spacing:.04em;padding:4px 12px 4px 14px;border-radius:0 4px 4px 0;box-shadow:0 2px 6px rgba(0,0,0,.25);z-index:6;}
-.gpc-ad-ribbon::before{content:"";position:absolute;left:0;bottom:-6px;border-width:0 0 6px 6px;border-style:solid;border-color:transparent transparent transparent #a02420;}
-.gpc-sold-ribbon{background:#37474f;}
-.gpc-sold-ribbon::before{border-color:transparent transparent transparent #1c2529;}
+/* Property header: title + location */
+.gpc-prop-header{margin:0 0 14px;}
+.gpc-prop-title{
+	margin:0 0 6px;font-size:22px;line-height:1.25;font-weight:700;
+	color:#1a1a1a;text-wrap:balance;
+}
+.gpc-prop-location-main{display:flex;align-items:center;gap:6px;color:#6b6b6b;font-size:14.5px;}
+.gpc-prop-location-main svg{flex:none;width:17px;height:17px;stroke:#8a8a8a;}
 
-/* Google-listing-style star rating */
-.gpc-rating{display:flex;align-items:center;gap:6px;margin:0 0 8px;font-size:14.5px;color:#3c3c3c;}
+/* Price + key stats row */
+.gpc-prop-top-row{
+	display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+	gap:12px 20px;padding:14px 0 0;border-top:1px solid #f0f0f0;
+}
+.gpc-prop-price-main{font-weight:700;font-size:22px;color:#0f7b4f;letter-spacing:-.01em;}
+.gpc-prop-stats-row{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;}
+.gpc-prop-stat-item{display:flex;align-items:center;gap:6px;white-space:nowrap;color:#4a4a4a;font-size:15px;font-weight:600;}
+.gpc-prop-stat-item svg{flex:none;width:19px;height:19px;stroke:#4a4a4a;}
+
+/* ==========================================================================
+   Status badges — prominent, professional, dynamic per listing status
+   ========================================================================== */
+.gpc-status-badge{
+	display:inline-block;margin:0 0 12px;padding:6px 14px;
+	font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+	border-radius:6px;color:#fff;background:#0f7b4f;
+	box-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+.gpc-status-available{background:#0f7b4f;}        /* FOR SALE */
+.gpc-status-rent,
+.gpc-status-rented{background:#1565c0;}           /* FOR RENT / LEASED */
+.gpc-status-leased{background:#5d4037;}           /* LEASED */
+.gpc-status-sold{background:#37474f;}             /* SOLD */
+.gpc-status-taken{background:#b71c1c;}            /* TAKEN */
+.gpc-status-featured{background:#fff;color:#e53935;border:1px solid #e53935;} /* Featured — red text */
+.gpc-status-ad{background:#e53935;}               /* AD */
+
+/* ==========================================================================
+   Google-listing-style star rating (listing page only)
+   ========================================================================== */
+.gpc-rating-row{display:flex;align-items:center;gap:6px;margin:14px 0 0;font-size:14.5px;color:#3c3c3c;}
 .gpc-rating-stars{display:inline-flex;gap:1px;}
 .gpc-rating-stars svg{width:15px;height:15px;}
 .gpc-rating-stars svg.is-filled{fill:#f4b400;stroke:#f4b400;}
 .gpc-rating-stars svg.is-empty{fill:none;stroke:#c8c8c8;}
 .gpc-rating-score{font-weight:700;color:#1a1a1a;}
-.gpc-rating-count{color:#777;}
-.gpc-rating.gpc-rating-interactive .gpc-rating-stars svg{cursor:pointer;transition:transform .1s ease;}
-.gpc-rating.gpc-rating-interactive .gpc-rating-stars svg:hover{transform:scale(1.15);}
-.gpc-rating.gpc-rating-done .gpc-rating-stars svg{cursor:default;}
-.gpc-rating.gpc-rating-done .gpc-rating-stars svg:hover{transform:none;}
-.gpc-rating.is-submitting{opacity:.6;pointer-events:none;}
-.gpc-rating-count{white-space:nowrap;}
+.gpc-rating-count{color:#777;white-space:nowrap;}
+.gpc-rating-row.gpc-rating-interactive .gpc-rating-stars svg{cursor:pointer;transition:transform .1s ease;}
+.gpc-rating-row.gpc-rating-interactive .gpc-rating-stars svg:hover{transform:scale(1.15);}
+.gpc-rating-row.gpc-rating-done .gpc-rating-stars svg{cursor:default;}
+.gpc-rating-row.gpc-rating-done .gpc-rating-stars svg:hover{transform:none;}
+.gpc-rating-row.is-submitting{opacity:.6;pointer-events:none;}
 .gpc-rating-mine{font-size:12.5px;color:#8a8a8a;font-style:italic;margin-left:4px;}
 
-/* Description shown FAQ-style: collapsed by default, tap to expand */
-.gpc-desc-faq{margin:4px 0 24px;border:1px solid #e6e6e6;border-radius:12px;overflow:hidden;background:#fff;}
-.gpc-desc-faq-trigger{
+/* ==========================================================================
+   FAQ-style expandable content sections
+   Collapsed by default, smooth open/close, mobile-friendly
+   ========================================================================== */
+.gpc-faq-sections{margin:4px 0 24px;display:flex;flex-direction:column;gap:10px;}
+.gpc-faq-item{border:1px solid #e6e6e6;border-radius:12px;overflow:hidden;background:#fff;}
+.gpc-faq-trigger{
 	width:100%;display:flex;align-items:center;gap:10px;
-	padding:14px 16px;background:#fafafa;border:none;cursor:pointer;
+	padding:15px 18px;background:#fafafa;border:none;cursor:pointer;
 	font-size:15.5px;font-weight:700;color:#1a1a1a;text-align:left;
+	transition:background .15s ease;
 }
-.gpc-desc-faq-icon{font-size:16px;flex:none;}
-.gpc-desc-faq-label{flex:1;}
-.gpc-desc-faq-chevron{flex:none;transition:transform .2s ease;color:#999;font-size:18px;}
-.gpc-desc-faq.is-open .gpc-desc-faq-chevron{transform:rotate(180deg);}
-.gpc-desc-faq-panel{max-height:0;overflow:hidden;transition:max-height .25s ease;}
-.gpc-desc-faq-inner{padding:16px;font-size:14.5px;line-height:1.65;color:#3c3c3c;}
-.gpc-desc-faq-inner p:first-child{margin-top:0;}
-.gpc-desc-faq-inner p:last-child{margin-bottom:0;}
+.gpc-faq-trigger:hover{background:#f2f2f2;}
+.gpc-faq-label{flex:1;}
+.gpc-faq-chevron{flex:none;width:20px;height:20px;color:#999;transition:transform .25s ease;}
+.gpc-faq-item.is-open .gpc-faq-chevron{transform:rotate(180deg);}
+.gpc-faq-item.is-open .gpc-faq-trigger{background:#fff;border-bottom:1px solid #f0f0f0;}
+.gpc-faq-panel{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.gpc-faq-content{padding:18px;font-size:14.5px;line-height:1.65;color:#3c3c3c;}
+.gpc-faq-content p:first-child{margin-top:0;}
+.gpc-faq-content p:last-child{margin-bottom:0;}
+
+/* ==========================================================================
+   Mobile optimization
+   ========================================================================== */
+@media (max-width:600px){
+	.gpc-prop-info-container{padding:16px;border-radius:12px;}
+	.gpc-prop-title{font-size:19px;}
+	.gpc-prop-price-main{font-size:19px;}
+	.gpc-prop-top-row{gap:10px 14px;}
+	.gpc-faq-trigger{padding:14px 16px;font-size:15px;}
+	.gpc-faq-content{padding:16px;}
+}

@@ -2,12 +2,12 @@
 	'use strict';
 
 	document.addEventListener( 'DOMContentLoaded', function () {
-		document.querySelectorAll( '.gpc-desc-faq-trigger' ).forEach( function ( trigger ) {
+		document.querySelectorAll( '.gpc-faq-trigger' ).forEach( function ( trigger ) {
 			trigger.addEventListener( 'click', function () {
-				var faq   = trigger.closest( '.gpc-desc-faq' );
-				var panel = faq ? faq.querySelector( '.gpc-desc-faq-panel' ) : null;
-				if ( ! faq || ! panel ) return;
-				var isOpen = faq.classList.toggle( 'is-open' );
+				var item  = trigger.closest( '.gpc-faq-item' );
+				var panel = item ? item.querySelector( '.gpc-faq-panel' ) : null;
+				if ( ! item || ! panel ) return;
+				var isOpen = item.classList.toggle( 'is-open' );
 				trigger.setAttribute( 'aria-expanded', isOpen ? 'true' : 'false' );
 				panel.style.maxHeight = isOpen ? panel.scrollHeight + 'px' : null;
 			} );
