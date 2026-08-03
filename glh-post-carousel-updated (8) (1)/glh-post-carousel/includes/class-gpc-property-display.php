@@ -99,31 +99,105 @@ class GPC_Property_Display {
 		$count = (int) get_post_meta( $post_id, '_gpc_rating_count', true );
 		$avg   = $count > 0 ? $sum / $count : 0;
 
-		// Map status to badge text
+		$is_single = is_singular( 'post' );
+
+		// Work out the status badge text. Prefer the explicit listing status
+		// saved from the owner's dashboard; otherwise infer a sensible label
+		// from the listing's category (rentals => FOR RENT, everything else
+		// that has property details => FOR SALE). Pulled dynamically so the
+		// badge always reflects the real listing state.
 		$status_map = array(
 			'available' => 'FOR SALE',
 			'sold'      => 'SOLD',
 			'rented'    => 'LEASED',
+			'leased'    => 'LEASED',
+			'taken'     => 'TAKEN',
+			'rent'      => 'FOR RENT',
 		);
-		$status_text = isset( $status_map[ $status ] ) ? $status_map[ $status ] : ( $status ? strtoupper( $status ) : '' );
+		if ( isset( $status_map[ $status ] ) ) {
+			$status_text  = $status_map[ $status ];
+			$status_class = $status;
+		} elseif ( $status ) {
+			$status_text  = strtoupper( $status );
+			$status_class = sanitize_html_class( $status );
+		} elseif ( has_category( array( 'rent', 'short-let', 'hotel' ), $post_id ) ) {
+			$status_text  = 'FOR RENT';
+			$status_class = 'rent';
+		} else {
+			$status_text  = 'FOR SALE';
+			$status_class = 'available';
+		}
+
+		// "Featured" uses WordPress's native sticky-post flag — no extra meta
+		// to maintain. Per the design, its text is shown in red.
+		$is_featured = is_sticky( $post_id );
+
+		// Gallery image count for the "image counter" action icon, and whether
+		// a map is available for the "map" action icon. Both reuse the
+		// carousel plugin's own data so they always match the hero gallery.
+		$image_count = 0;
+		if ( class_exists( 'GPC_Carousel' ) ) {
+			$image_count = count( GPC_Carousel::get_gallery_image_ids( $post_id ) );
+		}
+		$lat       = get_post_meta( $post_id, '_gpc_lat', true );
+		$lng       = get_post_meta( $post_id, '_gpc_lng', true );
+		$has_map   = ( ( $lat !== '' && $lng !== '' ) || $location !== '' );
+		$video_url = get_post_meta( $post_id, '_gpc_video_url', true );
 
 		ob_start();
 		?>
 		<div class="gpc-prop-info-block">
-			<!-- Status Badge -->
-			<?php if ( $status_text ) : ?>
-				<span class="gpc-status-badge gpc-status-<?php echo esc_attr( $status ); ?>">
-					<?php echo esc_html( $status_text ); ?>
-				</span>
-			<?php elseif ( $is_ad ) : ?>
-				<span class="gpc-status-badge gpc-status-ad">AD</span>
+
+			<?php // Action icons — shown on the single property page only, directly beneath the hero gallery. ?>
+			<?php if ( $is_single ) : ?>
+				<div class="gpc-action-icons" role="group" aria-label="Property actions">
+					<?php if ( $image_count > 0 ) : ?>
+						<button type="button" class="gpc-action-btn gpc-action-gallery is-active" aria-label="<?php echo esc_attr( sprintf( 'View all %d photos', $image_count ) ); ?>">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+							<span class="gpc-action-count"><?php echo esc_html( $image_count ); ?></span>
+						</button>
+					<?php endif; ?>
+
+					<?php if ( $video_url !== '' ) : ?>
+						<a href="<?php echo esc_url( $video_url ); ?>" target="_blank" rel="noopener" class="gpc-action-btn gpc-action-video" aria-label="Watch video">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="14" height="16" rx="2"></rect><path d="M16 9l6-3v12l-6-3"></path></svg>
+						</a>
+					<?php endif; ?>
+
+					<?php if ( $has_map ) : ?>
+						<button type="button" class="gpc-action-btn gpc-action-map" aria-label="Show location on map">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 8 3 16 6 23 3 23 18 16 21 8 18 1 21 1 6"></polygon><line x1="8" y1="3" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="21"></line></svg>
+						</button>
+					<?php endif; ?>
+
+					<button type="button" class="gpc-action-btn gpc-action-share" aria-label="Share this listing" data-share-title="<?php echo esc_attr( get_the_title( $post_id ) ); ?>" data-share-url="<?php echo esc_url( get_permalink( $post_id ) ); ?>">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+					</button>
+				</div>
 			<?php endif; ?>
+
+			<!-- Status Badges -->
+			<div class="gpc-status-badges">
+				<?php if ( $is_featured ) : ?>
+					<span class="gpc-status-badge gpc-status-featured">FEATURED</span>
+				<?php endif; ?>
+				<?php if ( $status_text ) : ?>
+					<span class="gpc-status-badge gpc-status-<?php echo esc_attr( $status_class ); ?>">
+						<?php echo esc_html( $status_text ); ?>
+					</span>
+				<?php endif; ?>
+				<?php if ( $is_ad ) : ?>
+					<span class="gpc-status-badge gpc-status-ad">AD</span>
+				<?php endif; ?>
+			</div>
 
 			<!-- Property Info Container -->
 			<div class="gpc-prop-info-container">
 				<!-- Title & Location -->
 				<div class="gpc-prop-header">
-					<h2 class="gpc-prop-title"><?php echo esc_html( get_the_title( $post_id ) ); ?></h2>
+					<?php if ( $is_single ) : ?>
+						<h1 class="gpc-prop-title"><?php echo esc_html( get_the_title( $post_id ) ); ?></h1>
+					<?php endif; ?>
 					<?php if ( $location !== '' ) : ?>
 						<div class="gpc-prop-location-main">
 							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>

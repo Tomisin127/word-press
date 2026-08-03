@@ -16,35 +16,33 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('gridbit-post-singular gridbit-property-post'); ?>>
 
-	<!-- Full-Width Hero Carousel Section (No padding/margin) -->
+	<!--
+	Full-Width Hero Gallery Section.
+	The Post Carousel plugin renders the property image carousel (with its
+	built-in image slides, arrows, dots and map toggle) into the
+	`gridbit_after_single_post_title` hook, so calling that hook here — at
+	the very top, before any title — places the gallery as the full-width
+	hero. The visible <h1> title is intentionally NOT printed here; the
+	plugin's property info block renders the title (plus badges, price and
+	action icons) directly beneath the gallery, matching the reference
+	real-estate layout and avoiding a duplicate title.
+	-->
 	<div class="gpc-hero-gallery-section">
-		<?php gridbit_top_single_post_content(); ?>
+		<?php
+		gridbit_before_single_post_title();
+		gridbit_after_single_post_title();
+		?>
 	</div>
 
 	<!-- Property Information & Content Section -->
 	<div class="gridbit-post-content-wrapper">
 		<div class="gridbit-post-content-inside gridbit-clearfix">
 
-			<?php gridbit_before_single_post_title(); ?>
-
-			<!-- Property Header: Title & Key Info -->
-			<?php if ( ! gridbit_get_option( 'hide_post_title' ) ) { ?>
-			<header class="gpc-property-header">
-				<div class="gpc-property-header-inside">
-					<?php if ( gridbit_get_option( 'remove_post_title_link' ) ) { ?>
-						<?php the_title( '<h1 class="post-title entry-title">', '</h1>' ); ?>
-					<?php } else { ?>
-						<?php the_title( sprintf( '<h1 class="post-title entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
-					<?php } ?>
-				</div>
-			</header><!-- .gpc-property-header -->
-			<?php } ?>
-
-			<?php gridbit_after_single_post_title(); ?>
-
-			<!-- Main Content: Description & FAQ Sections -->
+			<!-- Main Content: Property info block + Description/FAQ sections -->
 			<div class="entry-content gridbit-clearfix gpc-property-content">
 				<?php
+				gridbit_top_single_post_content();
+
 				the_content( sprintf(
 					wp_kses(
 						/* translators: %s: Name of current post. Only visible to screen readers */
